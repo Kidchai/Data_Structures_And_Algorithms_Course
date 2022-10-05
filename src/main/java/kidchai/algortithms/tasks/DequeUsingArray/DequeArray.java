@@ -1,4 +1,4 @@
-package kidchai.algortithms.tasks.DEQusingArray;
+package kidchai.algortithms.tasks.DequeUsingArray;
 
 public class DequeArray {
     int[] deque = new int[10];
