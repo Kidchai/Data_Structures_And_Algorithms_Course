@@ -2,8 +2,7 @@ package kidchai.algortithms.tasks.sorts;
 
 public class InsertionSort {
     public static void sort(int[] array) {
-        int i = 0;
-        while (i + 1 < array.length) {
+        for (int i = 0; i + 1 < array.length ; i++) {
             int j = i + 1;
             while (j > 0 && array[j] < array[j - 1]) {
                 int buf = array[j];
@@ -11,7 +10,6 @@ public class InsertionSort {
                 array[j - 1] = buf;
                 j--;
             }
-            i++;
         }
     }
 }
