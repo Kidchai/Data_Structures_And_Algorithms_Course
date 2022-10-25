@@ -1,14 +1,16 @@
 package kidchai.algortithms.tasks.BinaryHeapUsingArray;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BinaryHeapArray {
-    Node[] binaryHeap = new Node[100];
+    List<Node> heap = new ArrayList<>(100);
     int heapSize = 0;
 
-    private class Node {
-        private int value;
+    private static class Node {
+        private final int value;
         private Node leftChild;
         private Node rightChild;
-
         public Node(int value) {
             this.value = value;
         }
@@ -20,17 +22,17 @@ public class BinaryHeapArray {
         int currentId = heapSize - 1;
         int parentId = (currentId - 1) / 2;
 
-        binaryHeap[currentId] = new Node(element);
+        heap.set(currentId, new Node(element));
 
         if (currentId > 0) {
-            if (binaryHeap[parentId].leftChild == null) {
-                binaryHeap[parentId].leftChild = binaryHeap[currentId];
+            if (heap.get(parentId).leftChild == null) {
+                heap.get(parentId).leftChild = heap.get(currentId);
             } else {
-                binaryHeap[parentId].rightChild = binaryHeap[currentId];
+                heap.get(parentId).rightChild = heap.get(currentId);
             }
         }
 
-        if (binaryHeap[currentId].value < binaryHeap[parentId].value) {
+        if (heap.get(currentId).value < heap.get(parentId).value) {
             siftUp(currentId);
         }
     }
@@ -46,22 +48,22 @@ public class BinaryHeapArray {
 
         int parentLastId = (lastId - 1) / 2;
 
-        binaryHeap[lastId].leftChild = binaryHeap[minId].leftChild;
-        binaryHeap[lastId].rightChild = binaryHeap[minId].rightChild;
+        heap.get(lastId).leftChild = heap.get(minId).leftChild;
+        heap.get(lastId).rightChild = heap.get(minId).rightChild;
 
-        if (binaryHeap[parentLastId].rightChild != null) {
-            binaryHeap[parentLastId].rightChild = null;
+        if (heap.get(parentLastId).rightChild != null) {
+            heap.get(parentLastId).rightChild = null;
         } else {
-            binaryHeap[parentLastId].leftChild = null;
+            heap.get(parentLastId).leftChild = null;
         }
 
-        binaryHeap[minId] = binaryHeap[lastId];
-        binaryHeap[lastId] = null;
+        heap.set(minId, heap.get(lastId));
+        heap.set(lastId, null);
 
         heapSize--;
 
-        if (binaryHeap[minId].value > binaryHeap[minId].leftChild.value ||
-                binaryHeap[minId].value > binaryHeap[minId].rightChild.value) {
+        if (heap.get(minId).value > heap.get(minId).leftChild.value ||
+                heap.get(minId).value > heap.get(minId).rightChild.value) {
             siftDown(minId);
         }
 
@@ -69,74 +71,74 @@ public class BinaryHeapArray {
     }
 
     public int min() {
-        return binaryHeap[0].value;
+        return heap.get(0).value;
     }
 
     private void siftUp(int id) {
         int parentId = (id - 1) / 2;
 
         //сохраняем указатель на сына и сыновей сына
-        Node bufLeftChild = binaryHeap[id].leftChild;
-        Node bufRightChild = binaryHeap[id].rightChild;
-        Node buf = binaryHeap[id];
+        Node bufLeftChild = heap.get(id).leftChild;
+        Node bufRightChild = heap.get(id).rightChild;
+        Node buf = heap.get(id);
 
         //меняем местами в ячейках
-        binaryHeap[id] = binaryHeap[parentId];
-        binaryHeap[parentId] = buf;
+        heap.set(id, heap.get(parentId));
+        heap.set(parentId, buf);
 
         //меняем указатели на детей
-        if (binaryHeap[parentId].value == binaryHeap[id].leftChild.value) {
-            binaryHeap[parentId].leftChild = binaryHeap[id];
-            binaryHeap[parentId].rightChild = binaryHeap[id].rightChild;
+        if (heap.get(parentId).value == heap.get(id).leftChild.value) {
+            heap.get(parentId).leftChild = heap.get(id);
+            heap.get(parentId).rightChild = heap.get(id).rightChild;
         } else {
-            binaryHeap[parentId].leftChild = binaryHeap[id].leftChild;
-            binaryHeap[parentId].rightChild = binaryHeap[id];
+            heap.get(parentId).leftChild = heap.get(id).leftChild;
+            heap.get(parentId).rightChild = heap.get(id);
         }
 
-        binaryHeap[id].leftChild = bufLeftChild;
-        binaryHeap[id].rightChild = bufRightChild;
+        heap.get(id).leftChild = bufLeftChild;
+        heap.get(id).rightChild = bufRightChild;
 
         int grandParentId = (parentId - 1) / 2;
 
-        //меняем указатель "деда" (родителя родителя)
+        //меняем указатель "деда"
         if (parentId != 0) {
-            if (binaryHeap[id].value == binaryHeap[grandParentId].leftChild.value) {
-                binaryHeap[grandParentId].leftChild = binaryHeap[parentId];
+            if (heap.get(id).value == heap.get(grandParentId).leftChild.value) {
+                heap.get(grandParentId).leftChild = heap.get(parentId);
             } else {
-                binaryHeap[grandParentId].rightChild = binaryHeap[parentId];
+                heap.get(grandParentId).rightChild = heap.get(parentId);
             }
         }
 
-        if (parentId > 0 && binaryHeap[parentId].value < binaryHeap[grandParentId].value) {
+        if (parentId > 0 && heap.get(parentId).value < heap.get(grandParentId).value) {
             siftUp(parentId);
         }
     }
 
     private void siftDown(int id) {
-        int childId = binaryHeap[id].leftChild.value < binaryHeap[id].rightChild.value ? id * 2 + 1 : id * 2 + 2;
-        Node buf = binaryHeap[id];
+        int childId = heap.get(id).leftChild.value < heap.get(id).rightChild.value ? id * 2 + 1 : id * 2 + 2;
+        Node buf = heap.get(id);
         Node leftChildBuf = buf.leftChild;
         Node rightChildBuf = buf.rightChild;
 
         //меняем местами в ячейках
-        binaryHeap[id] = binaryHeap[childId];
-        binaryHeap[childId] = buf;
+        heap.set(id, heap.get(childId));
+        heap.set(childId, buf);
 
         //меняем указатели на детей
-        binaryHeap[childId].leftChild = binaryHeap[id].leftChild;
-        binaryHeap[childId].rightChild = binaryHeap[id].rightChild;
+        heap.get(childId).leftChild = heap.get(id).leftChild;
+        heap.get(childId).rightChild = heap.get(id).rightChild;
 
-        if (binaryHeap[id].value == leftChildBuf.value) {
-            binaryHeap[id].leftChild = buf;
-            binaryHeap[id].rightChild = rightChildBuf;
+        if (heap.get(id).value == leftChildBuf.value) {
+            heap.get(id).leftChild = buf;
+            heap.get(id).rightChild = rightChildBuf;
         } else {
-            binaryHeap[id].leftChild = leftChildBuf;
-            binaryHeap[id].rightChild = buf;
+            heap.get(id).leftChild = leftChildBuf;
+            heap.get(id).rightChild = buf;
         }
 
         if (childId >= heapSize - 1) {
-            if (binaryHeap[childId].value < binaryHeap[childId].leftChild.value ||
-                    binaryHeap[childId].value < binaryHeap[childId].rightChild.value) {
+            if (heap.get(childId).value < heap.get(childId).leftChild.value ||
+                    heap.get(childId).value < heap.get(childId).rightChild.value) {
                 siftDown(childId);
             }
         }
