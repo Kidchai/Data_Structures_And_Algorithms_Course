@@ -11,6 +11,7 @@ public class BinaryHeapArray {
         private final int value;
         private Node leftChild;
         private Node rightChild;
+
         public Node(int value) {
             this.value = value;
         }
@@ -22,7 +23,7 @@ public class BinaryHeapArray {
         int currentId = heapSize - 1;
         int parentId = (currentId - 1) / 2;
 
-        heap.set(currentId, new Node(element));
+        heap.add(currentId, new Node(element));
 
         if (currentId > 0) {
             if (heap.get(parentId).leftChild == null) {
@@ -37,34 +38,19 @@ public class BinaryHeapArray {
         }
     }
 
-    public int popMin() throws NullPointerException {
+    public int popMin() throws IndexOutOfBoundsException {
+        if (heapSize == 0) {
+            throw new IndexOutOfBoundsException();
+        }
+
         int minValue = min();
-        int minId = 0;
-        int lastId = heapSize - 1;
-
-        if (lastId < 0) {
-            throw new NullPointerException();
-        }
-
-        int parentLastId = (lastId - 1) / 2;
-
-        heap.get(lastId).leftChild = heap.get(minId).leftChild;
-        heap.get(lastId).rightChild = heap.get(minId).rightChild;
-
-        if (heap.get(parentLastId).rightChild != null) {
-            heap.get(parentLastId).rightChild = null;
-        } else {
-            heap.get(parentLastId).leftChild = null;
-        }
-
-        heap.set(minId, heap.get(lastId));
-        heap.set(lastId, null);
-
+        int lastNodeId = heapSize - 1;
+        putLastNodeInRoot(lastNodeId);
         heapSize--;
 
-        if (heap.get(minId).value > heap.get(minId).leftChild.value ||
-                heap.get(minId).value > heap.get(minId).rightChild.value) {
-            siftDown(minId);
+        if (heap.get(0).value > heap.get(0).leftChild.value ||
+                heap.get(0).value > heap.get(0).rightChild.value) {
+            siftDown(0);
         }
 
         return minValue;
@@ -142,5 +128,21 @@ public class BinaryHeapArray {
                 siftDown(childId);
             }
         }
+    }
+
+    private void putLastNodeInRoot(int lastNodeId) {
+        int parentId = (lastNodeId - 1) / 2;
+
+        heap.get(lastNodeId).leftChild = heap.get(0).leftChild;
+        heap.get(lastNodeId).rightChild = heap.get(0).rightChild;
+
+        if (heap.get(parentId).rightChild != null) {
+            heap.get(parentId).rightChild = null;
+        } else {
+            heap.get(parentId).leftChild = null;
+        }
+
+        heap.set(0, heap.get(lastNodeId));
+        heap.set(lastNodeId, null);
     }
 }
