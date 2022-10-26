@@ -9,7 +9,8 @@ public class QuickSort {
             return;
         }
 
-        int pivot = putPivotFirst(array, start, end);
+        //int pivot = putPivotFirst(array, start, end);
+        int pivot = array[start];
 
         boolean hasRightHalf = false;
         int endOfLeftHalf = start;
@@ -30,7 +31,7 @@ public class QuickSort {
         array[endOfLeftHalf] = pivot;
 
         sort(array, start, endOfLeftHalf);
-        sort(array, endOfLeftHalf + 1, array.length);
+        sort(array, endOfLeftHalf + 1, end);
     }
 
     public static void optimizedSort(int[] array, int start, int end) {
@@ -60,7 +61,7 @@ public class QuickSort {
         array[endOfLeftHalf] = pivot;
 
         sort(array, start, endOfLeftHalf);
-        sort(array, endOfLeftHalf + 1, array.length);
+        sort(array, endOfLeftHalf + 1, end);
     }
 
     private static int putPivotFirst(int[] array, int start, int end) {
