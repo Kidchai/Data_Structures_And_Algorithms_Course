@@ -2,6 +2,9 @@ package kidchai.algortithms.tasks.sorts;
 
 public class Heapsort {
     public static void sort(int[] array, int length) {
+        if (length < 1) {
+            return;
+        }
         heapify(array, length);
         sortMaxHeap(array, length);
     }
@@ -15,7 +18,7 @@ public class Heapsort {
 
         if (length > 1) {
             siftDown(array, length);
-            sort(array, length);
+            sortMaxHeap(array, length);
         }
     }
 
@@ -34,9 +37,7 @@ public class Heapsort {
 
     private static void siftDown(int[] array, int length) {
         int j = 0;
-
         while (array[j] < array[(2 * j) + 1] || array[j] < array[(2 * j) + 2]) {
-
             if (array[j] < array[(2 * j) + 1]) {
                 if ((2 * j) + 2 < length - 1 && array[j] < array[(2 * j) + 2]) {
                     int index = array[(2 * j) + 1] <= array[(2 * j) + 2] ? 1 : 2;

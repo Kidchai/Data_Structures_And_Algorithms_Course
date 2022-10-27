@@ -38,6 +38,7 @@ public class QuickSort {
 
         if (end - start <= 63) {
             InsertionSort.sort(array);
+            return;
         }
 
         int pivot = putPivotFirst(array, start, end);
