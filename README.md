@@ -1,3 +1,8 @@
+## Data structures
+- [Binary heap using array](https://github.com/Kidchai/Data_Structures_And_Algorithms_Course/blob/master/src/main/java/kidchai/algortithms/tasks/BinaryHeapUsingArray/BinaryHeapArray.java)
+- [Deque using array](https://github.com/Kidchai/Data_Structures_And_Algorithms_Course/blob/master/src/main/java/kidchai/algortithms/tasks/DequeUsingArray/DequeArray.java)
+- [Deque using list](https://github.com/Kidchai/Data_Structures_And_Algorithms_Course/blob/master/src/main/java/kidchai/algortithms/tasks/DequeUsingList/DequeList.java)
+
 ## Sorts
 - [Bubble sort](https://github.com/Kidchai/Data_Structures_And_Algorithms_Course/blob/master/src/main/java/kidchai/algortithms/tasks/sorts/BubbleSort.java)
 - [Insertion sort](https://github.com/Kidchai/Data_Structures_And_Algorithms_Course/blob/master/src/main/java/kidchai/algortithms/tasks/sorts/InsertionSort.java)
