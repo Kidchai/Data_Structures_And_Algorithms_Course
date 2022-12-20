@@ -1,3 +1,13 @@
+## Sorts
+- [Bubble sort](https://github.com/Kidchai/Data_Structures_And_Algorithms_Course/blob/master/src/main/java/kidchai/algortithms/tasks/sorts/BubbleSort.java)
+- [Insertion sort](https://github.com/Kidchai/Data_Structures_And_Algorithms_Course/blob/master/src/main/java/kidchai/algortithms/tasks/sorts/InsertionSort.java)
+- [Selection sort](https://github.com/Kidchai/Data_Structures_And_Algorithms_Course/blob/master/src/main/java/kidchai/algortithms/tasks/sorts/SelectionSort.java)
+
+![image](https://raw.githubusercontent.com/Kidchai/Data_Structures_And_Algorithms_Course/master/src/main/java/kidchai/algortithms/tasks/sorts/charts/sorts1.png)
+- [Heap sort](https://github.com/Kidchai/Data_Structures_And_Algorithms_Course/blob/master/src/main/java/kidchai/algortithms/tasks/sorts/Heapsort.java)
+- [Merge sort](https://github.com/Kidchai/Data_Structures_And_Algorithms_Course/blob/master/src/main/java/kidchai/algortithms/tasks/sorts/MergeSort.java)
+- [Quick sort](https://github.com/Kidchai/Data_Structures_And_Algorithms_Course/blob/master/src/main/java/kidchai/algortithms/tasks/sorts/QuickSort.java)
+![image](https://raw.githubusercontent.com/Kidchai/Data_Structures_And_Algorithms_Course/master/src/main/java/kidchai/algortithms/tasks/sorts/charts/sorts2.png)
 ## LeetCode problems
 
 | Problem                                                                                                | Solution                                                                                                                                                            | Runtime | Runtime beats | Memory  | Memory beats |
